@@ -10,8 +10,6 @@ and loads to BigQuery. A simple project that will hopefully myself and others le
 
 ## Why I Built This
 
-[One paragraph — honest, specific. Not "to learn Python."]
-
 I'm currently working as a junior data engineer at a bank. The system is complex, stack is fairly deep, and most of my work revolves around contributing to a data pipeline I didn't design. The purpose of this project to own something end-to-end.
 
 ## Stack
