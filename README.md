@@ -25,8 +25,12 @@ Python · BigQuery · GCS · Terraform · GitHub Actions
 
 ## What I Learned
 
-[Fill this in at the end — be specific about what broke]
+To be updated after completion!
 
 ## How to Run
 
-[Step by step, assume nothing]
+1. Clone the repo
+2. Set up GCP project and credentials
+3. Run Terraform to create infrastructure
+4. Trigger pipeline via GitHub Actions or run locally
+5. Check BigQuery for results]
