@@ -33,4 +33,14 @@ To be updated after completion!
 2. Set up GCP project and credentials
 3. Run Terraform to create infrastructure
 4. Trigger pipeline via GitHub Actions or run locally
-5. Check BigQuery for results]
+5. Check BigQuery for results
+
+## Commit cheeatsheet:
+
+feat: add meteorite data ingestion script
+feat: implement transformation pipeline
+fix: handle missing coordinates in dataset
+refactor: split pipeline into ingestion and transformation modules
+docs: add pipeline architecture diagram
+test: add tests for transformation logic
+build: add pandas and requests dependencies
