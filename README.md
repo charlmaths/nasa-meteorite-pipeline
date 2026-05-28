@@ -23,10 +23,6 @@ Python · BigQuery · GCS · Terraform · GitHub Actions
 3. Transform — normalises fields, casts types, snake_case
 4. Load — explicit schema load to BigQuery, partitioned by year
 
-## What I Learned
-
-To be updated after completion!
-
 ## How to Run
 
 1. Clone the repo
@@ -37,10 +33,20 @@ To be updated after completion!
 
 ## Commit cheeatsheet:
 
-feat: add meteorite data ingestion script
-feat: implement transformation pipeline
-fix: handle missing coordinates in dataset
-refactor: split pipeline into ingestion and transformation modules
-docs: add pipeline architecture diagram
-test: add tests for transformation logic
-build: add pandas and requests dependencies
+- feat: add meteorite data ingestion script
+- feat: implement transformation pipeline
+- fix: handle missing coordinates in dataset
+- refactor: split pipeline into ingestion and transformation modules
+- docs: add pipeline architecture diagram
+- test: add tests for transformation logic
+- build: add pandas and requests dependencies
+
+## What I Learned
+
+### Week - 1:
+
+Created a simple ingetion script that uses basic ingestion fundamentals. ingest.py uses requests and json libraries to parse the json files loaded from an api request. api_ingestor method uses try and except to extract the file and handle error codes, if succesful, we then use 'open' and json.loads method to land the json payload into the specific path we've established
+
+### Week - 2:
+
+Created a new script within the pipeline directory, this script is used for data quality checks to ensure that the we get good quality data. The initial methods inside the script are for basic null check, timestamp check (year), mass and coordinate checks, and finally, if failed file exist, we qurantine it.
