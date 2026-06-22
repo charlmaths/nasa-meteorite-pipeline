@@ -1,7 +1,7 @@
 [
   {
     "name": "Aachen",
-    "id": "",
+    "id": "1",
     "nametype": "Valid",
     "recclass": "L5",
     "mass": "21",
@@ -12200,5 +12200,29 @@
     "reclat": "47.850000",
     "reclong": "34.766670",
     "geolocation": { "latitude": "47.85", "longitude": "34.76667" }
+  },
+  {
+    "name": "Test_Meteor_1",
+    "id": "      ",
+    "nametype": "Valid",
+    "recclass": " ",
+    "mass": " 600s",
+    "fall": "FeLL",
+    "year": "1905-01-01T00:00:00.000",
+    "reclat": "47.850000",
+    "reclong": "34.766670",
+    "geolocation": { "latitude": "string1", "longitude": "string2" }
+  },
+  {
+    "name": "Test_Meteor_2",
+    "id": "      ",
+    "nametype": "Valid",
+    "recclass": " ",
+    "mass": " 600s",
+    "fall": "FeLL",
+    "year": "1905-01-01T00:00:00.000",
+    "reclat": "47.850000",
+    "reclong": "34.766670",
+    "geolocation": { "latitude": "string1", "longitude": "string2" }
   }
 ]
