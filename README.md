@@ -1,8 +1,10 @@
 # NASA Meteorite Landing Pipeline
 
-A batch data pipeline that ingests NASA's meteorite
+GCP & AWS Stack.
+
+A simple batch data pipeline that ingests NASA's meteorite
 landing dataset, applies data quality checks, transforms
-and loads to BigQuery. Extended to also pull NASA's Near Earth Object (NeoWS) feed on a daily schedule, so the project covers both a static historical load and a live incremental pull through the same pipeline shape. A simple project that will hopefully myself and others learn about building data pipelines with Python, GCS, BigQuery, Terraform, and GitHub Actions.
+and loads to BigQuery. Extended to also pull NASA's Near Earth Object (NeoWS) feed on a daily schedule, so the project covers both a static historical load (GCP Pipeline) and a live incremental pull through the same pipeline shape (AWS Pipeline). A simple(ish?) project that will hopefully myself and others learn about building data pipelines with Python, GCS, BigQuery, Terraform, Lambda, S3, and GitHub Actions.
 
 ## Architecture
 
@@ -10,22 +12,22 @@ and loads to BigQuery. Extended to also pull NASA's Near Earth Object (NeoWS) fe
 
 ## Why I Built This
 
-I'm currently working as a junior data engineer at a bank. The system is complex, stack is fairly deep, and most of my work revolves around contributing to a data pipeline I didn't design. The purpose of this project to own something end-to-end.
+As a Junior Data Engineer, I wanted to try and build something that I could actually own E2E. I currently work at a bank and the system is ciomplicated, the stack is fairly deep, and most of my work revolves around contributing to a data pipeline I didn't design. I wanted to build something that I could own from start to finish, and this project was a good opportunity to do that.
 
 ## Data Sources
 
 This project intentionally uses two NASA datasets with different update patterns, to practice both batch and incremental pipeline design:
 
-| Dataset | Update pattern | Pipeline pattern |
-|---|---|---|
-| Meteorite Landings | Static / irregular | One-off batch load |
-| NeoWS (Near Earth Objects) | Daily | Scheduled incremental pull |
+| Dataset                    | Update pattern     | Pipeline pattern           |
+| -------------------------- | ------------------ | -------------------------- |
+| Meteorite Landings         | Static / irregular | One-off batch load         |
+| NeoWS (Near Earth Objects) | Daily              | Scheduled incremental pull |
 
-The meteorite dataset barely changes, so it's not useful for testing scheduling or idempotency. NeoWS updates daily, which makes it a better fit for practicing orchestration, dedup logic, and failure handling on a real cadence.
+Since the meteorite dataset barely changes, so it's not really useful for testing scheduling or idempotency. NeoWS updates daily, which makes it a better fit for practicing orchestration, dedup logic, and failure handling on a real flow of data.
 
 ## Stack
 
-Python · BigQuery · GCS · Terraform · GitHub Actions
+Python · BigQuery · GCS · Terraform · GitHub Actions · Docker · Airflow · AWS Lambda · S3
 
 ## Pipeline Stages
 
@@ -43,7 +45,7 @@ Python · BigQuery · GCS · Terraform · GitHub Actions
 4. Load — appends new records to BigQuery, partitioned by [date field]
 
 Orchestrated with [Apache Airflow, self-hosted via Docker Compose /
-GitHub Actions scheduled workflow — pick whichever you land on].
+GitHub Actions scheduled workflow].
 
 ## How to Run
 
