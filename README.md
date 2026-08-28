@@ -2,7 +2,7 @@
 
 A batch data pipeline that ingests NASA's meteorite
 landing dataset, applies data quality checks, transforms
-and loads to BigQuery. A simple project that will hopefully myself and others learn about building data pipelines with Python, GCS, BigQuery, Terraform, and GitHub Actions.
+and loads to BigQuery. Extended to also pull NASA's Near Earth Object (NeoWS) feed on a daily schedule, so the project covers both a static historical load and a live incremental pull through the same pipeline shape. A simple project that will hopefully myself and others learn about building data pipelines with Python, GCS, BigQuery, Terraform, and GitHub Actions.
 
 ## Architecture
 
@@ -11,6 +11,17 @@ and loads to BigQuery. A simple project that will hopefully myself and others le
 ## Why I Built This
 
 I'm currently working as a junior data engineer at a bank. The system is complex, stack is fairly deep, and most of my work revolves around contributing to a data pipeline I didn't design. The purpose of this project to own something end-to-end.
+
+## Data Sources
+
+This project intentionally uses two NASA datasets with different update patterns, to practice both batch and incremental pipeline design:
+
+| Dataset | Update pattern | Pipeline pattern |
+|---|---|---|
+| Meteorite Landings | Static / irregular | One-off batch load |
+| NeoWS (Near Earth Objects) | Daily | Scheduled incremental pull |
+
+The meteorite dataset barely changes, so it's not useful for testing scheduling or idempotency. NeoWS updates daily, which makes it a better fit for practicing orchestration, dedup logic, and failure handling on a real cadence.
 
 ## Stack
 
@@ -22,6 +33,17 @@ Python · BigQuery · GCS · Terraform · GitHub Actions
 2. Quality — validates 5 rules, flags failures separately
 3. Transform — normalises fields, casts types, snake_case
 4. Load — explicit schema load to BigQuery, partitioned by year
+
+### NeoWS incremental pipeline
+
+1. Extract — scheduled pull from NeoWS API, [daily / cron cadence]
+2. Dedup — checks [what key/logic] against already-landed records
+   before writing, since the job may run more than once
+3. Quality — [reuse existing rules / new rules specific to NeoWS shape]
+4. Load — appends new records to BigQuery, partitioned by [date field]
+
+Orchestrated with [Apache Airflow, self-hosted via Docker Compose /
+GitHub Actions scheduled workflow — pick whichever you land on].
 
 ## How to Run
 
