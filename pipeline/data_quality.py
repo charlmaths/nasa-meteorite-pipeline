@@ -59,11 +59,59 @@ def null_check(payload):
     return f"No id found on meteors: {id_null_list}"
 
 
+# Year check:
+def year_check(payload):
+    '''
+    - This method checks if year key exist, if it doesn't,
+    parses it and saves into a list
+
+    - It also adds meteors that have year > 1800 into a separate list
+
+    '''
+    # print(type(payload))
+    # Check if year key exist:
 
 
-# # Year check:
-# def year_check(payload):
-#     pass
+    no_year_list = []
+    year_1800_2026 = []
+    year_list = []
+
+    for record in payload:
+        if "year" not in record.keys():
+            no_year_list.append(record['name'])
+        elif int(record['year'][:4]) > 1800:
+            year_1800_2026.append(record['name'])
+        else:
+            year_list.append(record['year'])
+
+    # for years in year_list:
+    #     if int(years[:4]) > 1800:
+    #         year_1800_2026.append(years[:4])
+            # print(years[:4])
+
+
+    return f"Meteors without years: {no_year_list}\n\n Meteors recorded from >1800 \n\n{year_1800_2026}\n\n"
+
+
+
+# Using 'with open' to use all the methods above, this will go into a main function later
+
+with open(file_path, "r") as f:
+    data = json.load(f)
+    # print(data[0]["year"])
+
+    # print(data[0]["id"]) # Accessing the list first [] then dictionary keys ["keys"]
+    # print(type(data))
+
+    # method calls
+
+    # print(null_check(data))
+    print(year_check(data))
+
+
+
+
+
 
 # # Mass check:
 # def mass_check(payload):
@@ -75,22 +123,6 @@ def null_check(payload):
 
 # # Failed files to qurantine:
 # def quarantine_check(payload):
-
-# Using 'with open' to use all the methods above, this will go into a main function later
-with open(file_path, "r") as f:
-    data = json.load(f)
-    # print(data[0]["id"]) # Accessing the list first [] then dictionary keys ["keys"]
-    # print(type(data))
-
-    # method calls
-    # json_parser(data)
-    print(null_check(data))
-
-
-
-
-
-
 
 
 
