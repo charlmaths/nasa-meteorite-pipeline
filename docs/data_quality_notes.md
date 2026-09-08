@@ -4,8 +4,7 @@ Working notes for the data quality stage. Captures **what each data quality chec
 **approaches I tried** to get there, and the **refactors** I still want to make so
 the script reads cleaner.
 
-This is a learning journal as much as a spec — the "trial" sections are kept on
-purpose so I can see why the current version looks the way it does.
+This is a learning journal as much as a spec, I've decided to keep the "trial" sections so I can see why the current version looks the way it does.
 
 ---
 
@@ -45,7 +44,7 @@ Things worth noting:
 - Every value is a **string**, including `id`, `mass`, `reclat`, `reclong`.
 - `year` is an ISO timestamp string; only the first 4 chars are the year.
 - Some records are missing keys entirely (`year`, `mass`, `geolocation`).
-- Extra Socrata system keys show up on some records
+- Extra Socrata system keys show up on some records (I actually hae no idea what scrotata is, but the API is built on it!!)
   (`:@computed_region_nnqa_25f4`, `:@computed_region_cbhk_fwbd`) — ignore these.
 - `~1000` records in the test extract (`?$limit=1000`).
 
